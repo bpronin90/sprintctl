@@ -1,0 +1,37 @@
+version: v1
+kind: anime-streaming-tracker
+
+issue_parsing:
+  phase_header_pattern: '(?m)^#{2,4}\s.*[Pp]hase\s+(?P<phase>[0-9]+)\s*$'
+  epic_child_patterns:
+    - '(?m)^- \[ \] #(?P<issue>[0-9]+)'
+  dependency_patterns:
+    depends_on:
+      - '(?i)depends-on:\s*#(?P<issue>[0-9]+)'
+    unblocks:
+      - '(?i)unblocks:\s*#(?P<issue>[0-9]+)'
+
+labels:
+  blocked: blocked
+  agent_prefix: 'agent:'
+  tier_prefix: 'tier:'
+
+comments:
+  required_roles:
+    - implementation-summary
+    - review
+    - blocked
+    - db-verification
+    - closeout
+
+docs_hooks:
+  roadmap_path: docs/current_roadmap.md
+  currentstate_path: docs/currentstate.md
+
+closeout:
+  close_issue_on_success: true
+  revisit_parent_on_close: true
+
+branching:
+  issue_branch_template: issue/{{issue_number}}-{{slug}}
+  epic_branch_template: epic/{{issue_number}}-{{slug}}

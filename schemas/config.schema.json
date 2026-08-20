@@ -1,0 +1,152 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://sprintctl.dev/schemas/config.schema.json",
+  "title": "SprintctlConfig",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "version",
+    "repo",
+    "adapter"
+  ],
+  "properties": {
+    "version": {
+      "type": "string",
+      "const": "v1"
+    },
+    "repo": {
+      "$ref": "#/$defs/repo"
+    },
+    "github": {
+      "$ref": "#/$defs/github"
+    },
+    "execution": {
+      "$ref": "#/$defs/execution"
+    },
+    "adapter": {
+      "$ref": "#/$defs/adapterRef"
+    },
+    "comments": {
+      "$ref": "#/$defs/comments"
+    },
+    "logging": {
+      "$ref": "#/$defs/logging"
+    }
+  },
+  "$defs": {
+    "repo": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "owner",
+        "name",
+        "default_branch"
+      ],
+      "properties": {
+        "id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "owner": {
+          "type": "string",
+          "minLength": 1
+        },
+        "name": {
+          "type": "string",
+          "minLength": 1
+        },
+        "default_branch": {
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    },
+    "github": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "host": {
+          "type": "string",
+          "default": "github.com"
+        },
+        "api_base_url": {
+          "type": "string",
+          "format": "uri"
+        }
+      }
+    },
+    "execution": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "worktree_root": {
+          "type": "string",
+          "minLength": 1
+        },
+        "default_base_branch": {
+          "type": "string",
+          "minLength": 1
+        },
+        "max_fixup_passes": {
+          "type": "integer",
+          "minimum": 0,
+          "default": 2
+        },
+        "reviewers_required": {
+          "type": "integer",
+          "minimum": 0,
+          "default": 1
+        }
+      }
+    },
+    "adapterRef": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "kind",
+        "config_path"
+      ],
+      "properties": {
+        "kind": {
+          "type": "string",
+          "minLength": 1
+        },
+        "config_path": {
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    },
+    "comments": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "tag_prefix": {
+          "type": "string",
+          "minLength": 1,
+          "default": "sprintctl"
+        },
+        "allow_supersede": {
+          "type": "boolean",
+          "default": true
+        }
+      }
+    },
+    "logging": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "run_log_dir": {
+          "type": "string",
+          "minLength": 1,
+          "default": ".sprintctl/runs"
+        },
+        "emit_json": {
+          "type": "boolean",
+          "default": true
+        }
+      }
+    }
+  }
+}

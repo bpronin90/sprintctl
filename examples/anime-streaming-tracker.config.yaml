@@ -1,0 +1,28 @@
+version: v1
+repo:
+  id: anime-streaming-tracker
+  owner: bpronin90
+  name: anime-streaming-tracker
+  default_branch: main
+
+github:
+  host: github.com
+  api_base_url: https://api.github.com
+
+execution:
+  worktree_root: .worktrees
+  default_base_branch: main
+  max_fixup_passes: 2
+  reviewers_required: 1
+
+adapter:
+  kind: anime-streaming-tracker
+  config_path: adapters/anime-streaming-tracker/config.yaml
+
+comments:
+  tag_prefix: sprintctl
+  allow_supersede: true
+
+logging:
+  run_log_dir: .sprintctl/runs
+  emit_json: true

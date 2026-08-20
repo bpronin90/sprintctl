@@ -29,4 +29,12 @@ go.work.sum
 
 # Editor/IDE
 # .idea/
-# .vscode/
+.vscode/
+
+# Local agent state
+.codex/napkin.md
+.dual-graph/
+.dual-graph-context/
+
+# Local build output
+/sprintctl

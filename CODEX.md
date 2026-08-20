@@ -32,6 +32,5 @@ Do not silently promote design speculation into always-loaded instruction text.
 ## Skills
 
 Load these on demand when the situation applies:
-- `.codex/skills/codex-dual-graph-context.md`
 - `.codex/skills/codex-protocol-review.md`
 - `.codex/skills/codex-design-translation.md`
